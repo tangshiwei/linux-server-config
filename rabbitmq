@@ -6,6 +6,7 @@
  
 #RabbitMQ安装目录
 RABBITMQ_HOME=/usr/local/rabbitmq
+
 export RABBITMQ_HOME
  
 case "$1" in

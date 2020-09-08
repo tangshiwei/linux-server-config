@@ -13,7 +13,6 @@ start() {
 		nohup sh mqbroker -n 192.168.1.110:9876 >/usr/local/rocketmq/logs/broker.log 2>&1 &
 
 		echo "start success"
-
 	fi
 }
  
@@ -23,7 +22,6 @@ stop() {
 		cd ${dir}/bin
 		./mqshutdown broker
 		echo "stop success"
-
 	fi
 }
  
