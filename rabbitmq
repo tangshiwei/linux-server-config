@@ -36,5 +36,6 @@ restart)
     echo "Usage: $prog {start|stop|status|restart}"
     ;;
 esac
+
 exit 0
  
