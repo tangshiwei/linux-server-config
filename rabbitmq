@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# chkconfig: 2345 80 05
+# description: rabbitmq 
+# processname: rabbitmq
+ 
+#RabbitMQ安装目录
+RABBITMQ_HOME=/usr/local/rabbitmq
+export RABBITMQ_HOME
+ 
+case "$1" in
+    start)
+    echo "Starting RabbitMQ ..."
+	
+	${RABBITMQ_HOME}/sbin/rabbitmq-server -detached
+    ;;
+stop)
+    echo "Stopping RabbitMQ ..."
+	
+    ${RABBITMQ_HOME}/sbin/rabbitmqctl stop
+    ;;
+status)
+    echo "Status RabbitMQ ..."
+	
+    ${RABBITMQ_HOME}/sbin/rabbitmqctl status
+    ;;
+restart)
+    echo "Restarting RabbitMQ ..."
+	
+	${RABBITMQ_HOME}/sbin/rabbitmqctl stop
+	
+    ${RABBITMQ_HOME}/sbin/rabbitmq-server -detached
+    ;;
+ 
+*)
+    echo "Usage: $prog {start|stop|status|restart}"
+    ;;
+esac
+exit 0
+ 

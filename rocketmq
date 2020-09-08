@@ -1,0 +1,48 @@
+#!/bin/sh
+#chkconfig: 2345 65 35
+#description: start or stop rocketmq using chkconfig
+
+dir=/usr/local/rocketmq
+export JAVA_HOME=/usr/local/jdk8
+ 
+start() {
+	if [ -f ${dir}/bin/mqnamesrv ]; then
+		echo "starting rocketmq namesrv.."
+		cd ${dir}/bin
+		nohup sh mqnamesrv >> ${dir}/logs/namesrv.log 2>&1 &
+	
+		echo "start sucess"
+		
+	fi
+}
+ 
+stop() {
+	if [ -f ${dir}/bin/mqshutdown ]; then
+		echo "stopping rocketmq namesrv.."
+		cd ${dir}/bin
+		./mqshutdown namesrv
+
+		echo "stop success"
+
+	fi
+}
+ 
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		echo "restarting rocketmq namesrv.."
+		$0 stop
+		sleep 1
+		$0 start
+		;;
+	*)
+		echo $"Usage:$0 {start|stop|restart}"
+		exit 1
+		;;
+esac
+exit 0
